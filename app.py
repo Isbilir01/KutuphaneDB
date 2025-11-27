@@ -44,19 +44,32 @@ def dashboard():
 # KİTAP İŞLEMLERİ
 @app.route('/kitaplar')
 def kitap_listesi():
+    search = request.args.get('search', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("""
-        SELECT k.*, y.ad as yazar_adi, ya.adi as yayinevi_adi 
-        FROM kitap k
-        LEFT JOIN yazar y ON k.yazar_id = y.yazar_id
-        LEFT JOIN yayinevi ya ON k.yayinevi_id = ya.yayinevi_id
-        ORDER BY k.kitap_id DESC
-    """)
+    
+    if search:
+        cursor.execute("""
+            SELECT k.*, y.ad as yazar_adi, ya.adi as yayinevi_adi 
+            FROM kitap k
+            LEFT JOIN yazar y ON k.yazar_id = y.yazar_id
+            LEFT JOIN yayinevi ya ON k.yayinevi_id = ya.yayinevi_id
+            WHERE k.kitap_adi LIKE %s
+            ORDER BY k.kitap_id ASC
+        """, (f'%{search}%',))
+    else:
+        cursor.execute("""
+            SELECT k.*, y.ad as yazar_adi, ya.adi as yayinevi_adi 
+            FROM kitap k
+            LEFT JOIN yazar y ON k.yazar_id = y.yazar_id
+            LEFT JOIN yayinevi ya ON k.yayinevi_id = ya.yayinevi_id
+            ORDER BY k.kitap_id ASC
+        """)
+    
     kitaplar = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('kitap_listesi.html', kitaplar=kitaplar)
+    return render_template('kitap_listesi.html', kitaplar=kitaplar, search=search)
 
 @app.route('/kitap/ekle', methods=['GET', 'POST'])
 def kitap_ekle():
@@ -144,13 +157,19 @@ def kitap_sil(kitap_id):
 # YAZAR İŞLEMLERİ
 @app.route('/yazarlar')
 def yazar_listesi():
+    search = request.args.get('search', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM yazar ORDER BY yazar_id DESC")
+    
+    if search:
+        cursor.execute("SELECT * FROM yazar WHERE ad LIKE %s ORDER BY yazar_id ASC", (f'%{search}%',))
+    else:
+        cursor.execute("SELECT * FROM yazar ORDER BY yazar_id ASC")
+    
     yazarlar = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('yazar_listesi.html', yazarlar=yazarlar)
+    return render_template('yazar_listesi.html', yazarlar=yazarlar, search=search)
 
 @app.route('/yazar/ekle', methods=['GET', 'POST'])
 def yazar_ekle():
@@ -209,13 +228,19 @@ def yazar_sil(yazar_id):
 # YAYINEVİ İŞLEMLERİ
 @app.route('/yayinevleri')
 def yayinevi_listesi():
+    search = request.args.get('search', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM yayinevi ORDER BY yayinevi_id DESC")
+    
+    if search:
+        cursor.execute("SELECT * FROM yayinevi WHERE adi LIKE %s ORDER BY yayinevi_id ASC", (f'%{search}%',))
+    else:
+        cursor.execute("SELECT * FROM yayinevi ORDER BY yayinevi_id ASC")
+    
     yayinevleri = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('yayinevi_listesi.html', yayinevleri=yayinevleri)
+    return render_template('yayinevi_listesi.html', yayinevleri=yayinevleri, search=search)
 
 @app.route('/yayinevi/ekle', methods=['GET', 'POST'])
 def yayinevi_ekle():
@@ -277,13 +302,19 @@ def yayinevi_sil(yayinevi_id):
 # OKUYUCU İŞLEMLERİ
 @app.route('/okuyucular')
 def okuyucu_listesi():
+    search = request.args.get('search', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM okuyucu ORDER BY okuyucu_id DESC")
+    
+    if search:
+        cursor.execute("SELECT * FROM okuyucu WHERE ad LIKE %s ORDER BY okuyucu_id ASC", (f'%{search}%',))
+    else:
+        cursor.execute("SELECT * FROM okuyucu ORDER BY okuyucu_id ASC")
+    
     okuyucular = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('okuyucu_listesi.html', okuyucular=okuyucular)
+    return render_template('okuyucu_listesi.html', okuyucular=okuyucular, search=search)
 
 @app.route('/okuyucu/ekle', methods=['GET', 'POST'])
 def okuyucu_ekle():
@@ -346,19 +377,32 @@ def okuyucu_sil(okuyucu_id):
 # ÖDÜNÇ İŞLEMLERİ
 @app.route('/oduncler')
 def odunc_listesi():
+    search = request.args.get('search', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("""
-        SELECT o.*, k.kitap_adi, ok.ad as okuyucu_adi
-        FROM odunc o
-        JOIN kitap k ON o.kitap_id = k.kitap_id
-        JOIN okuyucu ok ON o.okuyucu_id = ok.okuyucu_id
-        ORDER BY o.odunc_id DESC
-    """)
+    
+    if search:
+        cursor.execute("""
+            SELECT o.*, k.kitap_adi, ok.ad as okuyucu_adi
+            FROM odunc o
+            JOIN kitap k ON o.kitap_id = k.kitap_id
+            JOIN okuyucu ok ON o.okuyucu_id = ok.okuyucu_id
+            WHERE k.kitap_adi LIKE %s OR ok.ad LIKE %s
+            ORDER BY o.odunc_id ASC
+        """, (f'%{search}%', f'%{search}%'))
+    else:
+        cursor.execute("""
+            SELECT o.*, k.kitap_adi, ok.ad as okuyucu_adi
+            FROM odunc o
+            JOIN kitap k ON o.kitap_id = k.kitap_id
+            JOIN okuyucu ok ON o.okuyucu_id = ok.okuyucu_id
+            ORDER BY o.odunc_id ASC
+        """)
+    
     oduncler = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('odunc_listesi.html', oduncler=oduncler)
+    return render_template('odunc_listesi.html', oduncler=oduncler, search=search)
 
 @app.route('/odunc/ver', methods=['GET', 'POST'])
 def odunc_ver():
@@ -406,5 +450,4 @@ def odunc_teslim(odunc_id):
     return redirect(url_for('odunc_listesi'))
 
 if __name__ == '__main__':
-    print("Flask uygulaması başlatılıyor...")
     app.run(debug=True)
