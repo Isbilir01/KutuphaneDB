@@ -52,7 +52,7 @@ Toplam okuyucu
 
 Aktif ödünç sayısı
 
-##🛠 Kullanılan Teknolojiler
+## 🛠 Kullanılan Teknolojiler
 
 Python (Flask)
 
