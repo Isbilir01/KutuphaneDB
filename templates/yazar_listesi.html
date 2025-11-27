@@ -8,6 +8,18 @@
     <a href="/yazar/ekle" class="btn btn-primary">Yeni Yazar Ekle</a>
 </div>
 
+<!-- Arama Formu -->
+<div class="mb-4">
+    <form method="GET" action="/yazarlar" class="row g-3">
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="search" placeholder="Yazar adı ile ara..." value="{{ search if search else '' }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Ara</button>
+        </div>
+    </form>
+</div>
+
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead class="table-dark">
