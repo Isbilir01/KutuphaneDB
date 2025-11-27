@@ -1,4 +1,3 @@
-/* Vintage Kahve Tonları - Profesyonel Renk Paleti */
 :root {
     --kahve-koyu: #3e2723;
     --kahve-orta: #5d4037;
@@ -290,6 +289,152 @@ h1::after {
     color: var(--kahve-koyu) !important;
 }
 
+/* Dashboard - Hoş Geldiniz Bölümü */
+.welcome-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, var(--bej) 0%, white 100%);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(62, 39, 35, 0.1);
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--kahve-koyu);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--altin) 50%, transparent 100%);
+    border-radius: 2px;
+}
+
+.welcome-description {
+    font-size: 1.1rem;
+    color: var(--kahve-acik);
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+    line-height: 1.8;
+}
+
+/* Dashboard - İstatistik Kartları */
+.stats-row {
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(62, 39, 35, 0.3) !important;
+}
+
+/* Dashboard - Hızlı Erişim Bölümü */
+.quick-access-section {
+    margin-top: 3rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--kahve-koyu);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, var(--altin) 50%, transparent 100%);
+    border-radius: 2px;
+}
+
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.quick-access-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--kahve-koyu);
+    box-shadow: 0 4px 15px rgba(62, 39, 35, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-access-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--kahve-orta) 0%, var(--altin) 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.quick-access-card:hover::before {
+    transform: scaleX(1);
+}
+
+.quick-access-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(62, 39, 35, 0.25);
+    border-color: var(--altin);
+    background: linear-gradient(135deg, white 0%, var(--bej) 100%);
+}
+
+.quick-access-card .card-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.quick-access-card:hover .card-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.quick-access-card .card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--kahve-koyu);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.quick-access-card:hover .card-title {
+    color: var(--kahve-orta);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .card-body {
@@ -306,5 +451,39 @@ h1::after {
     
     .table-responsive {
         padding: 1rem;
+    }
+    
+    .welcome-section {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    .welcome-description {
+        font-size: 1rem;
+    }
+    
+    .quick-access-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .quick-access-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .quick-access-card .card-icon {
+        font-size: 3rem;
+    }
+    
+    .quick-access-card .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
     }
 }
