@@ -1,12 +1,12 @@
-## 📚 Kütüphane Yönetim Sistemi
+# 📚 Kütüphane Yönetim Sistemi
 
 Flask + MySQL ile Web Tabanlı Kütüphane Uygulaması
 
 Bu proje, bir kütüphanedeki kitap, yazar, yayınevi, okuyucu ve ödünç işlemlerinin web arayüzü üzerinden kolayca yönetilmesini amaçlayan bir Flask uygulamasıdır.
 Veritabanı olarak MySQL, arayüzde ise Bootstrap 5 kullanılmaktadır.
 
-# 🚀 Özellikler
-# 📘 Kitap Yönetimi
+## 🚀 Özellikler
+## 📘 Kitap Yönetimi
 
 Kitap ekleme / düzenleme / silme
 
@@ -16,25 +16,25 @@ Mevcut stok gösterimi
 
 Kitap listesi (JOIN ile tüm bilgiler)
 
-# ✍️ Yazar Yönetimi
+## ✍️ Yazar Yönetimi
 
 Yazar ekle / düzenle / sil
 
 Ülkesi ile birlikte listeleme
 
-# 🏢 Yayınevi Yönetimi
+## 🏢 Yayınevi Yönetimi
 
 Yayınevi ekle / düzenle / sil
 
 Adres ve iletişim bilgileri
 
-# 👤 Okuyucu Yönetimi
+## 👤 Okuyucu Yönetimi
 
 Okuyucu ekle / düzenle / sil
 
 İletişim bilgilerini yönetme
 
-# 📦 Ödünç İşlemleri
+## 📦 Ödünç İşlemleri
 
 Kitap ödünç verme
 
@@ -42,7 +42,7 @@ Teslim alma (iade tarihi ekleme)
 
 Tüm ödünç işlemlerini listeleme
 
-# 📊 Dashboard
+## 📊 Dashboard
 
 Toplam kitap sayısı
 
@@ -52,7 +52,7 @@ Toplam okuyucu
 
 Aktif ödünç sayısı
 
-🛠 Kullanılan Teknolojiler
+##🛠 Kullanılan Teknolojiler
 
 Python (Flask)
 
