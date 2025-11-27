@@ -3,35 +3,40 @@
 {% block title %}Anasayfa - Kütüphane Sistemi{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Kütüphane Yönetim Sistemi</h1>
+<!-- Hoş Geldiniz Bölümü -->
+<div class="welcome-section">
+    <h1 class="welcome-title">Hoş Geldiniz</h1>
+    <p class="welcome-description">Kütüphane Yönetim Paneli üzerinden kitap, yazar, yayınevi, okuyucu ve ödünç işlemlerini kolayca yönetebilirsiniz.</p>
+</div>
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="card text-white bg-primary mb-3">
+<!-- İstatistik Kartları -->
+<div class="row stats-row">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card text-white bg-primary stat-card">
             <div class="card-body">
                 <h5 class="card-title">Toplam Kitap</h5>
                 <p class="card-text display-4">{{ toplam_kitap }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-success mb-3">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card text-white bg-success stat-card">
             <div class="card-body">
                 <h5 class="card-title">Toplam Adet</h5>
                 <p class="card-text display-4">{{ toplam_adet }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-info mb-3">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card text-white bg-info stat-card">
             <div class="card-body">
                 <h5 class="card-title">Toplam Okuyucu</h5>
                 <p class="card-text display-4">{{ toplam_okuyucu }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-warning mb-3">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card text-white bg-warning stat-card">
             <div class="card-body">
                 <h5 class="card-title">Aktif Ödünç</h5>
                 <p class="card-text display-4">{{ aktif_odunc }}</p>
@@ -40,16 +45,30 @@
     </div>
 </div>
 
-<div class="row mt-4">
-    <div class="col-md-12">
-        <h3>Hızlı Erişim</h3>
-        <div class="list-group">
-            <a href="/kitaplar" class="list-group-item list-group-item-action">📚 Kitap Yönetimi</a>
-            <a href="/yazarlar" class="list-group-item list-group-item-action">✍️ Yazar Yönetimi</a>
-            <a href="/yayinevleri" class="list-group-item list-group-item-action">🏢 Yayınevi Yönetimi</a>
-            <a href="/okuyucular" class="list-group-item list-group-item-action">👥 Okuyucu Yönetimi</a>
-            <a href="/oduncler" class="list-group-item list-group-item-action">📖 Ödünç İşlemleri</a>
-        </div>
+<!-- Hızlı Erişim Kartları -->
+<div class="quick-access-section">
+    <h3 class="section-title">Hızlı Erişim</h3>
+    <div class="quick-access-grid">
+        <a href="/kitaplar" class="quick-access-card">
+            <div class="card-icon">📚</div>
+            <h4 class="card-title">Kitap Yönetimi</h4>
+        </a>
+        <a href="/yazarlar" class="quick-access-card">
+            <div class="card-icon">✍️</div>
+            <h4 class="card-title">Yazar Yönetimi</h4>
+        </a>
+        <a href="/yayinevleri" class="quick-access-card">
+            <div class="card-icon">🏢</div>
+            <h4 class="card-title">Yayınevi Yönetimi</h4>
+        </a>
+        <a href="/okuyucular" class="quick-access-card">
+            <div class="card-icon">👥</div>
+            <h4 class="card-title">Okuyucu Yönetimi</h4>
+        </a>
+        <a href="/oduncler" class="quick-access-card">
+            <div class="card-icon">📖</div>
+            <h4 class="card-title">Ödünç İşlemleri</h4>
+        </a>
     </div>
 </div>
 {% endblock %}
