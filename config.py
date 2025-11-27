@@ -2,7 +2,8 @@
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'rafaresma',
+    'password': 'MYSQL ŞİFRESİ',
     'database': 'kutuphanedb',
     'charset': 'utf8mb4'
 }
+
