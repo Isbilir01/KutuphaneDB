@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Yayınevi Düzenle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yayınevi Düzenle</h1>
+
+<form method="POST" action="/yayinevi/duzenle/{{ yayinevi.yayinevi_id }}">
+    <div class="mb-3">
+        <label for="adi" class="form-label">Adı</label>
+        <input type="text" class="form-control" id="adi" name="adi" value="{{ yayinevi.adi }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="adres" class="form-label">Adres</label>
+        <input type="text" class="form-control" id="adres" name="adres" value="{{ yayinevi.adres }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="telno" class="form-label">Telefon</label>
+        <input type="text" class="form-control" id="telno" name="telno" value="{{ yayinevi.telno }}" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/yayinevleri" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Kitap Düzenle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Kitap Düzenle</h1>
+
+<form method="POST" action="/kitap/duzenle/{{ kitap.kitap_id }}">
+    <div class="mb-3">
+        <label for="kitap_adi" class="form-label">Kitap Adı</label>
+        <input type="text" class="form-control" id="kitap_adi" name="kitap_adi" value="{{ kitap.kitap_adi }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="yazar_id" class="form-label">Yazar</label>
+        <select class="form-control" id="yazar_id" name="yazar_id" required>
+            <option value="">Yazar Seçin</option>
+            {% for yazar in yazarlar %}
+            <option value="{{ yazar.yazar_id }}" {% if yazar.yazar_id == kitap.yazar_id %}selected{% endif %}>{{ yazar.ad }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="yayinevi_id" class="form-label">Yayınevi</label>
+        <select class="form-control" id="yayinevi_id" name="yayinevi_id" required>
+            <option value="">Yayınevi Seçin</option>
+            {% for yayinevi in yayinevleri %}
+            <option value="{{ yayinevi.yayinevi_id }}" {% if yayinevi.yayinevi_id == kitap.yayinevi_id %}selected{% endif %}>{{ yayinevi.adi }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="basim_yili" class="form-label">Basım Yılı</label>
+        <input type="number" class="form-control" id="basim_yili" name="basim_yili" value="{{ kitap.basim_yili }}" min="1900" max="2100" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="tur" class="form-label">Tür</label>
+        <input type="text" class="form-control" id="tur" name="tur" value="{{ kitap.tur }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="adet" class="form-label">Adet</label>
+        <input type="number" class="form-control" id="adet" name="adet" value="{{ kitap.adet }}" min="1" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/kitaplar" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

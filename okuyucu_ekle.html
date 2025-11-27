@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Okuyucu Ekle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yeni Okuyucu Ekle</h1>
+
+<form method="POST" action="/okuyucu/ekle">
+    <div class="mb-3">
+        <label for="ad" class="form-label">Ad</label>
+        <input type="text" class="form-control" id="ad" name="ad" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="telefon" class="form-label">Telefon</label>
+        <input type="text" class="form-control" id="telefon" name="telefon" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a href="/okuyucular" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

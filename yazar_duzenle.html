@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Yazar Düzenle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yazar Düzenle</h1>
+
+<form method="POST" action="/yazar/duzenle/{{ yazar.yazar_id }}">
+    <div class="mb-3">
+        <label for="ad" class="form-label">Ad</label>
+        <input type="text" class="form-control" id="ad" name="ad" value="{{ yazar.ad }}" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="ulke" class="form-label">Ülke</label>
+        <input type="text" class="form-control" id="ulke" name="ulke" value="{{ yazar.ulke }}" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/yazarlar" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

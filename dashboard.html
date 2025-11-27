@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Anasayfa - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Kütüphane Yönetim Sistemi</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Kitap</h5>
+                <p class="card-text display-4">{{ toplam_kitap }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Adet</h5>
+                <p class="card-text display-4">{{ toplam_adet }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Okuyucu</h5>
+                <p class="card-text display-4">{{ toplam_okuyucu }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Aktif Ödünç</h5>
+                <p class="card-text display-4">{{ aktif_odunc }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>Hızlı Erişim</h3>
+        <div class="list-group">
+            <a href="/kitaplar" class="list-group-item list-group-item-action">📚 Kitap Yönetimi</a>
+            <a href="/yazarlar" class="list-group-item list-group-item-action">✍️ Yazar Yönetimi</a>
+            <a href="/yayinevleri" class="list-group-item list-group-item-action">🏢 Yayınevi Yönetimi</a>
+            <a href="/okuyucular" class="list-group-item list-group-item-action">👥 Okuyucu Yönetimi</a>
+            <a href="/oduncler" class="list-group-item list-group-item-action">📖 Ödünç İşlemleri</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Yazar Ekle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yeni Yazar Ekle</h1>
+
+<form method="POST" action="/yazar/ekle">
+    <div class="mb-3">
+        <label for="ad" class="form-label">Ad</label>
+        <input type="text" class="form-control" id="ad" name="ad" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="ulke" class="form-label">Ülke</label>
+        <input type="text" class="form-control" id="ulke" name="ulke" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a href="/yazarlar" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

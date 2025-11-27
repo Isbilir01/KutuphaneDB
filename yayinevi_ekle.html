@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Yayınevi Ekle - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yeni Yayınevi Ekle</h1>
+
+<form method="POST" action="/yayinevi/ekle">
+    <div class="mb-3">
+        <label for="adi" class="form-label">Adı</label>
+        <input type="text" class="form-control" id="adi" name="adi" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="adres" class="form-label">Adres</label>
+        <input type="text" class="form-control" id="adres" name="adres" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="telno" class="form-label">Telefon</label>
+        <input type="text" class="form-control" id="telno" name="telno" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a href="/yayinevleri" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}

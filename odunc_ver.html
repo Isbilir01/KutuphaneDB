@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Ödünç Ver - Kütüphane Sistemi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Yeni Ödünç Ver</h1>
+
+<form method="POST" action="/odunc/ver">
+    <div class="mb-3">
+        <label for="kitap_id" class="form-label">Kitap</label>
+        <select class="form-control" id="kitap_id" name="kitap_id" required>
+            <option value="">Kitap Seçin</option>
+            {% for kitap in kitaplar %}
+            <option value="{{ kitap.kitap_id }}">{{ kitap.kitap_adi }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="okuyucu_id" class="form-label">Okuyucu</label>
+        <select class="form-control" id="okuyucu_id" name="okuyucu_id" required>
+            <option value="">Okuyucu Seçin</option>
+            {% for okuyucu in okuyucular %}
+            <option value="{{ okuyucu.okuyucu_id }}">{{ okuyucu.ad }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="alis_tarihi" class="form-label">Alış Tarihi</label>
+        <input type="date" class="form-control" id="alis_tarihi" name="alis_tarihi" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Ödünç Ver</button>
+    <a href="/oduncler" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}
