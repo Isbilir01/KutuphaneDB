@@ -154,6 +154,46 @@ def kitap_sil(kitap_id):
     flash('Kitap başarıyla silindi!', 'success')
     return redirect(url_for('kitap_listesi'))
 
+@app.route('/kitap/stok_guncelle/<int:kitap_id>', methods=['POST'])
+def kitap_stok_guncelle(kitap_id):
+    action = request.form.get('action')
+    adet_input = request.form.get('adet', '0')
+    
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    # Mevcut adet değerini al
+    cursor.execute("SELECT adet FROM kitap WHERE kitap_id=%s", (kitap_id,))
+    kitap = cursor.fetchone()
+    
+    if kitap:
+        mevcut_adet = kitap['adet']
+        yeni_adet = mevcut_adet
+        
+        if action == 'increase':
+            yeni_adet = mevcut_adet + 1
+        elif action == 'decrease':
+            yeni_adet = max(0, mevcut_adet - 1)  # 0'ın altına düşmesine izin verme
+        elif action == 'set':
+            try:
+                yeni_adet = int(adet_input)
+                if yeni_adet < 0:
+                    yeni_adet = 0  # Negatif ise 0'a sabitle
+            except ValueError:
+                yeni_adet = 0
+        
+        # Stok güncelle
+        cursor.execute("UPDATE kitap SET adet=%s WHERE kitap_id=%s", (yeni_adet, kitap_id))
+        conn.commit()
+        flash('Stok güncellendi!', 'success')
+    else:
+        flash('Kitap bulunamadı!', 'danger')
+    
+    cursor.close()
+    conn.close()
+    
+    return redirect(url_for('kitap_listesi'))
+
 # YAZAR İŞLEMLERİ
 @app.route('/yazarlar')
 def yazar_listesi():
